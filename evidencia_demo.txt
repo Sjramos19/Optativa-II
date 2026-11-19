@@ -1,0 +1,73 @@
+TECHSTORE - EVIDENCIA MOMENTO 2
+
+1. Carga inicial
+{
+  "registros_entrada": 156,
+  "registros_validos": 151,
+  "registros_rechazados": 5,
+  "pedidos_insertados": 151,
+  "pedidos_en_bd": 151,
+  "clientes_en_bd": 20,
+  "productos_en_bd": 10
+}
+
+2. Segunda carga: no duplica pedidos
+{
+  "registros_entrada": 156,
+  "registros_validos": 151,
+  "registros_rechazados": 5,
+  "pedidos_insertados": 0,
+  "pedidos_en_bd": 151,
+  "clientes_en_bd": 20,
+  "productos_en_bd": 10
+}
+
+3. Registrar pedido y descontar stock
+{
+  "pedido_id": "PED-M2-20261022221141909763",
+  "producto": "Portátil Lenovo ThinkPad E14",
+  "cantidad": 1,
+  "valor_total": 3200000.0,
+  "stock_final": 24,
+  "mensaje": "Pedido registrado y stock descontado en una transacción."
+}
+
+4. Consultar pedidos del cliente
+{
+  "total_encontrados": 9,
+  "pedido_nuevo": {
+    "pedido_id": "PED-M2-20261022221141909763",
+    "cliente": "Carlos Mendoza",
+    "producto": "Portátil Lenovo ThinkPad E14",
+    "fecha_pedido": "2026-10-22",
+    "cantidad": 1,
+    "valor_total": 3200000.0,
+    "estado": "pendiente",
+    "tiempo_entrega_dias": null
+  }
+}
+
+5. Marcar pedido como entregado
+{
+  "pedido_id": "PED-M2-20261022221141909763",
+  "estado": "entregado",
+  "tiempo_entrega_dias": 2,
+  "mensaje": "Pedido marcado como entregado."
+}
+
+6. Rechazo de stock negativo fuera de transacción explícita
+{
+  "rechazado": true,
+  "regla": "ck_prod_stock: CHECK (stock >= 0)",
+  "stock_antes": 24,
+  "stock_despues": 24,
+  "mensaje": "La base rechazó la operación: CHECK stock >= 0."
+}
+
+7. Estado final
+{
+  "clientes": 20,
+  "productos": 10,
+  "pedidos": 152,
+  "rechazos_carga": 5
+}
